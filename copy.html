@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Скопировать ссылку js</title>
+<script src="2.0.0.clipboard.min.js"></script>
+</head>
+<body>
+<textarea id="my_copy" style="width: 300px;">Здесь текст который будет скопирован</textarea>
+ 
+<button class="copy" data-clipboard-target="#my_copy">Скопировать</button>
+
+</body>
+</html>							
+<script>
+var clipboard = new ClipboardJS('.copy');
+clipboard.on('success', function(e) { 
+    new_text = ('Text:', e.text); alert('Скопировано : ' + new_text);
+    e.clearSelection();
+});
+
+clipboard.on('error', function(e) { 
+	alert('не скопировано'); 
+});
+
+</script>
+							
