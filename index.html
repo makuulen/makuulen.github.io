@@ -9,10 +9,14 @@
         $(document).ready(function (){
           alert();
         });
+      function res (d) {
+        alert(d)
+      }
     </script>
   </head>
   <body>
-    <form action="https://makuulen.000webhostapp.com/form.php" method="post">
+    <iframe name="frame" style="display:none"></iframe>
+    <form action="https://makuulen.000webhostapp.com/form.php" target="frame" method="post">
       <input type="text" name="name"/>
       <input type="submit"/>
     </form>
