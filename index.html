@@ -8,19 +8,12 @@
     <script>
         $(document).ready(function (){
           alert();
-            $.ajax({
-                url: "form.php",
-                type: "post",
-                dataType: "html",
-                data: ({}),
-                success: function (data) {
-                    alert(data);
-                }
-            });
         });
     </script>
   </head>
   <body>
-      <a href="https://makuulen.000webhostapp.com">upload</a>
-  </body>
+    <form action="https://makuulen.000webhostapp.com/form.php" method="post">
+      <input type="text" name="name"/>
+      <input type="submit"/>
+    </form>
 </html>
