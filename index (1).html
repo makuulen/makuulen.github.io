@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=320, initial-scale=1">
+    <meta charset="utf-8">
+    <script src="jQuery.js"></script>
+    <style></style>
+    <script>
+        $(document).ready(function (){
+            $.ajax({
+                url: "form.php",
+                type: "post",
+                dataType: "html",
+                data: ({}),
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        });
+    </script>
+  </head>
+  <body>
+      
+  </body>
+</html>
