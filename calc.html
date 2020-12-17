@@ -405,6 +405,19 @@
               } else {
                 $("#tablo").html(otv);
               }
+            } else if(tab.indexOf("l") != -1) {
+              var osn = $(".step").text();
+              var pok = tab.substring(tab.lastIndexOf(">") + 1, tab.length);
+              var otv = Math.log(pok) / Math.log(osn);
+              otv = Math.round(otv * 1000000) / 1000000;
+              if(isNaN(otv) == true) {
+                otv = Infinity;
+              }
+              if(otv != Infinity) {
+                $("#tablo").append("=" + otv);
+              } else {
+                $("#tablo").html(otv);
+              }
             } else if(tab.indexOf("<") != -1) {
               var pok = $(".step").text();
               var osn = tab.substring(0, tab.indexOf("<"));
@@ -414,7 +427,7 @@
                 otv = Infinity;
               }
               if(otv != Infinity) {
-                 $("#tablo").append("=" + otv);
+                $("#tablo").append("=" + otv);
               } else {
                 $("#tablo").html(otv);
               }
