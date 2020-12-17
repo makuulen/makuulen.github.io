@@ -237,6 +237,29 @@
               } else {
                 $("#tablo").html(otv);
               }
+            } else if(tab.indexOf("l") != -1) {
+              var osn = $(".step").text();
+              var pok = tab.substring(tab.lastIndexOf(">") + 1, tab.length);
+              var otv = Math.log(pok) / Math.log(osn);
+              otv = Math.round(otv * 1000000) / 1000000;
+              if(isNaN(otv) == true) {
+                otv = Infinity;
+              }
+              if(otv != Infinity) {
+                if(num.indexOf("√") != -1) {
+                  $("#tablo").html("<sup class='step' style='border:1px white dashed'>0</sup>&radic;" + otv);
+                } else if(num.indexOf("l") != -1){
+              $("#tablo").html("log" + otv + "<sub class='step' style='border:1px white dashed;font-size:10px'>0</sub>");
+            } else if(num.indexOf("<") != -1){
+                  $("#tablo").html(otv + "<sup class='step' style='border:1px white dashed'>0</sup>");
+                } else if(num == "%") {
+              $("#tablo").html(otv + "%от");
+            } else {
+                  $("#tablo").html(otv + num);
+                }
+              } else {
+                $("#tablo").html(otv);
+              }
             } else if(tab.indexOf("<") != -1) {
               var pok = $(".step").text();
               var osn = tab.substring(0, tab.indexOf("<"));
