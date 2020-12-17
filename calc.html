@@ -106,7 +106,7 @@
             $("#tablo").html(tab);
           }
           var tabt = $("#tablo").text();
-          var reg = /[+|–|×|÷|%от]/i;
+          var reg = /[+|–|×|÷|т]/i;
           if(tabt.indexOf("=") != -1) {
             var num2 = tabt.substring(tabt.indexOf("=") + 1, tabt.length);
             if(num2 != "0") {
