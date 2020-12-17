@@ -301,8 +301,7 @@
                  if(num.indexOf("√") != -1) {
                   $("#tablo").html("<sup class='step' style='border:1px white dashed'>0</sup>&radic;" + otv);
                 } else if(num.indexOf("l") != -1){
-              $("#tablo").prepend("log");
-              $("#tablo").append("<sub class='step' style='border:1px white dashed;font-size:5px'>0</sub>");
+              $("#tablo").html("log" + otv + "<sub class='step' style='border:1px white dashed;font-size:5px'>0</sub>");
             } else if(num.indexOf("<") != -1){
                   $("#tablo").html(otv + "<sup class='step' style='border:1px white dashed'>0</sup>");
                 } else if(num == "%") {
