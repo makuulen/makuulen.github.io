@@ -43,6 +43,10 @@
         $(".num").click(function() {
           var num = $(this).text();
           var tab = $("#tablo").html();
+          if(num == "π") {
+            num = Math.PI;
+            num = Math.round(num * 1000000) / 1000000;
+          }
           if(tab == Infinity) {
             tab = "0";
             $("#tablo").html(tab);
@@ -475,6 +479,7 @@
       <button class="but st" style="background-color: #a0a0a0; padding: 4px 6px">%</button>
       <button class="but st" style="background-color: orange;color: white; padding: 3px 4px">log<sub>x</sub>y</button>
       <button class="but st" style="background-color: orange;color: white; padding: 3px 4px">!x</button><br/>
+      <button class="but num" style="background-color: orange;color: white; padding: 3px 4px">π</button>
       <button class="but num" style="background-color: #444;color: white">7</button>
       <button class="but num" style="background-color: #444;color: white">8</button>
       <button class="but num" style="background-color: #444;color: white">9</button>
