@@ -52,6 +52,9 @@
           if(reg.test(tabt) == true) {
             var zn = tabt.match(reg);
             var num2 = tabt.substring(tabt.indexOf(zn) + 1, tabt.length);
+            if(num2 == "-") {
+              num2 = "";
+            }
             if(num2.indexOf(".") != -1) {
               pr = false;
             }
@@ -75,6 +78,15 @@
               $("#tablo").text(num);
             }
           }
+          } else if (tab.indexOf("l") != -1) {
+            var num2 = tabt.substring(tabt.lastIndexOf(">") + 1, tabt.length);
+            if(num2 == "-") {
+              num2 = "";
+            }
+            if(num2 == "" && num == "."){
+              num = "0" + num;
+            }
+            $("#tablo").append(num);
           } else if(tab.indexOf("<") != -1) {
             var st = $(".step").text();
             if(st == "0") {
