@@ -93,6 +93,11 @@
           } else if(num == "." && pr == false) {
             
           } else {
+            var zn = tabt.match(reg);
+            var num2 = tabt.substring(tabt.indexOf(zn) + 1, tabt.length);
+            if(num2 == "" && num == "."){
+              num = "0" + num;
+            }
             $("#tablo").append(num);
           }
         });
