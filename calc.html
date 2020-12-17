@@ -106,7 +106,7 @@
             $("#tablo").html(tab);
           }
           var tabt = $("#tablo").text();
-          var reg = /[+|–|×|÷]/i;
+          var reg = /[+|–|×|÷|%от]/i;
           if(tabt.indexOf("=") != -1) {
             var num2 = tabt.substring(tabt.indexOf("=") + 1, tabt.length);
             if(num2 != "0") {
@@ -136,16 +136,6 @@
             } else {
               var reg2 = /\d/g;
               $(".step").html(st.match(reg2).join(""));
-            }
-            }
-          } else if(tab.indexOf("%") != -1) {
-            var num = tab.substring(tab.indexOf("т") + 1, tab.length);
-            if(num != "0") {
-              if(num.indexOf("-") == -1) {
-              $("#tablo").html(tab.substring(0, tab.indexOf("т") + 1) + "-" + num);
-            } else {
-              var reg2 = /\d/g;
-              $("#tablo").html(tab.substring(0, tab.indexOf("т") + 1) + num.match(reg2).join(""));
             }
             }
           } else {
