@@ -177,7 +177,7 @@
             if(num.indexOf("√") != -1) {
               $("#tablo").prepend("<sup class='step' style='border:1px white dashed'>0</sup>&radic;");
             } else if(num.indexOf("l") != -1){
-              $("#tablo").prepend("log<sub class='step' style='border:1px white dashed;font-size:10px'>0</sub>");
+              $("#tablo").html("log<sub class='step' style='font-size:10px'>" + tab + "</sub>");
             } else if(num.indexOf("<") != -1){
               $("#tablo").append("<sup class='step' style='border:1px white dashed'>0</sup>");
             } else if(num == "%") {
