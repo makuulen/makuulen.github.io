@@ -176,6 +176,9 @@
           if(reg.test(tab) == false) {
             if(num.indexOf("√") != -1) {
               $("#tablo").prepend("<sup class='step' style='border:1px white dashed'>0</sup>&radic;");
+            } else if(num.indexOf("log") != -1){
+              $("#tablo").prepend("log");
+              $("#tablo").append("<sub class='step' style='border:1px white dashed'>0</sub>");
             } else if(num.indexOf("<") != -1){
               $("#tablo").append("<sup class='step' style='border:1px white dashed'>0</sup>");
             } else if(num == "%") {
