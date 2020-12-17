@@ -39,7 +39,6 @@
     </style>
     <script>
       $(document).ready(function() {
-alert();
         $(".num").click(function() {
           var num = $(this).text();
           var tab = $("#tablo").html();
@@ -345,7 +344,7 @@ alert();
               } else {
                 $("#tablo").html(otv);
               }
-            } else (tab.indexOf("%") != -1) {
+            } else if(tab.indexOf("%") != -1) {
               var num1 = tab.substring(0, tab.indexOf("%"));
               var num2 = tab.substring(tab.indexOf("т") + 1);
               var otv = num2 / 100 * num1;
