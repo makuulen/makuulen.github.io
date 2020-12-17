@@ -47,7 +47,7 @@
             $("#tablo").html(tab);
           }
           var tabt = $("#tablo").text();
-          var reg = /[+|–|×|÷]/i;
+          var reg = /[+|–|×|÷|т]/i;
           var pr = true;
           if(reg.test(tabt) == true) {
             var zn = tabt.match(reg);
