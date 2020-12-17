@@ -344,6 +344,12 @@
               } else {
                 $("#tablo").html(otv);
               }
+            } else (tab.indexOf("%") != -1) {
+              var num1 = tab.substring(0, tab.indexOf("%"));
+              var num2 = tab.substring(tab.indexOf("т") + 1);
+              var otv = num2 / 100 * num1;
+              otv = Math.round(otv * 1000000) / 1000000;
+              $("#tablo").append("=" + otv);
             } else {
                 var zn = tab.match(reg);
               var num1 = parseFloat(tab.substring(0, tab.indexOf(zn)));
