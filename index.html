@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=320, initial-scale=1">
+    <meta charset="utf-8">
+    <script type="text/javascript" src="jQuery.js"></script>
+    <style>
+      body {
+        background: url("fon.jpg") no-repeat center center fixed;
+        background-size: cover;
+      }
+      #center {
+        position: absolute;
+        margin: auto;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 180px;
+        height: 120px;
+      }
+      #tablo {
+        display: inline-block;
+        overflow: auto;
+        width: 95%;
+        height: 30px;
+        background-color: black;
+        color: white;
+        text-align: right;
+      }
+      .but {
+        border: none;
+    border-radius: 5px;
+        padding: 4px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+      }
+    </style>
+    <script>
+      $(document).ready(function() {
+        $(".num").click(function() {
+          var num = $(this).text();
+          var tab = $("#tablo").html();
+          if(num == "π") {
+            num = Math.PI;
+            num = Math.round(num * 1000000) / 1000000;
+          }
+          if(tab == Infinity) {
+            tab = "0";
+            $("#tablo").html(tab);
+          }
+          var tabt = $("#tablo").text();
+          var reg = /[+|–|×|÷|т]/i;
+          var pr = true;
+          if(reg.test(tabt) == true) {
+            var zn = tabt.match(reg);
+            var num2 = tabt.substring(tabt.indexOf(zn) + 1, tabt.length);
+            if(num2 == "-") {
+              num2 = "";
+            }
+            if(num2.indexOf(".") != -1) {
+              pr = false;
+            }
+          } else {
+            if(tabt.indexOf(".") != -1) {
+              pr = false;
+            }
+          }
+          if(tab == "0") {
+            if(num == ".") {
+              $("#tablo").append(num);
+            } else {
+              $("#tablo").text(num);
+            }
+          } else if(tabt.indexOf("=") != -1) {
+                var otv = tabt.substring(tabt.indexOf("=") + 1, tabt.length);
+                if(otv == "0") {
+            if(num == ".") {
+              $("#tablo").html(otv + num);
+            } else {
+              $("#tablo").text(num);
+            }
+          } else {
+              if(num == "." && otv.indexOf(".") != -1) {
+                num = "";
+              }
+              $("#tablo").html(otv + num);
+          }
+          } else if (tab.indexOf("log") != -1) {
+            var num2 = tabt.substring(tabt.lastIndexOf(">") + 1, tabt.length);
+            if(num2 == "-") {
+              num2 = "";
+            }
+            if(num2 == "" && num == "."){
+              num = "0" + num;
+            }
+            $("#tablo").append(num);
+          } else if (tab.indexOf("(") != -1) {
+            var num2 = tab.substring(tab.indexOf("(") + 1, tab.indexOf(")"));
+            var znt = tab.substring(0, tab.indexOf("("));
+            if(num2 == "0") {
+              if(num != ".") {
+                 num2 = "";
+              }
+            }
+if(num == "." && num2.indexOf(".") != -1) {
+                num = "";
+}
+            $("#tablo").html(znt + "(" + num2 + num + ")");
+          } else if (tab.indexOf("!") != -1) {
+            var num2 = tabt.substring(0, tabt.indexOf("!"));
+            if(num2 == "0") {
+              if(num != ".") {
+                 num2 = "";
+              }
+            }
+if(num == "." && num2.indexOf(".") != -1) {
+                num = "";
+}
+            $("#tablo").html(num2 + num + "!");
+          } else if(tab.indexOf("<") != -1) {
+            var st = $(".step").text();
+            if(st == "0") {
+              if(num == ".") {
+                $(".step").append(num);
+              } else {
+                $(".step").text(num);
+              }
+            } else {
+              if(num == "." && st.indexOf(".") != -1) {
+                
+              } else {
+                $(".step").append(num);
+              }
+            }
+          } else if(num == "." && pr == false) {
+            
+          } else {
+            var zn = tabt.match(reg);
+            var num2 = tabt.substring(tabt.indexOf(zn) + 1, tabt.length);
+            if(num2 == "" && num == "."){
+              num = "0" + num;
+            }
+            $("#tablo").append(num);
+          }
+        });
+        $("#str").click(function() {
+          $("#tablo").text("0");
+        });
+        $("#plmin").click(function() {
+          var tab = $("#tablo").html();
+          if(tab == Infinity) {
+            tab = "0";
+            $("#tablo").html(tab);
+          }
+          var tabt = $("#tablo").text();
+          var reg = /[+|–|×|÷|т]/i;
+          if(tabt.indexOf("=") != -1) {
+            var num2 = tabt.substring(tabt.indexOf("=") + 1, tabt.length);
+            if(num2 != "0") {
+              if(num2.indexOf("-") == -1) {
+              $("#tablo").html("-" + num2);
+            } else {
+              var reg2 = /\d/g;
+              $("#tablo").html(num2.match(reg2).join(""));
+            }
+            }
+          } else if(reg.test(tab) == true) {
+            var zn = tab.match(reg);
+            var num2 = tab.substring(tab.indexOf(zn) + 1, tab.length);
+            if(num2 != "0") {
+              if(num2.indexOf("-") == -1) {
+              $("#tablo").html(tab.substring(0, tab.indexOf(zn) + 1) + "-" + num2);
+            } else {
+              if(num2 != "-") {
+              var reg2 = /\d/g;
+              $("#tablo").html(tab.substring(0, tab.indexOf(zn) + 1) + num2.match(reg2).join(""));
+              } else {
+                $("#tablo").html(tab.substring(0, tab.indexOf(zn) + 1));
+              }
+            }
+            }
+           } else if (tab.indexOf("log") != -1) {
+            var num2 = tab.substring(tab.lastIndexOf(">") + 1, tab.length);
+            if(num2 != "0") {
+              if(num2.indexOf("-") == -1) {
+              $("#tablo").html(tab.substring(0, tab.lastIndexOf(">") + 1) + "-" + num2);
+            } else {
+              if(num2 != "-") {
+              var reg2 = /\d/g;
+              $("#tablo").html(tab.substring(0, tab.lastIndexOf(">") + 1) + num2.match(reg2).join(""));
+              } else {
+                $("#tablo").html(tab.substring(0, tab.lastIndexOf(">") + 1));
+              }
+            }
+            }
+          } else if (tab.indexOf("!") != -1) {
+            var num2 = tab.substring(0, tab.indexOf("!"));
+            if(num2 != "0") {
+              if(num2.indexOf("-") == -1) {
+              $("#tablo").html("-" + num2 + "!");
+            } else {
+              var reg2 = /\d/g;
+              $("#tablo").html(num2.match(reg2).join("") + "!");
+            }
+            }
+          } else if (tab.indexOf("(") != -1) {
+            var num2 = tab.substring(tab.indexOf("(") + 1, tab.indexOf(")"));
+            var znt = tab.substring(0, tab.indexOf("("));
+            if(num2 != "0") {
+              if(num2.indexOf("-") == -1) {
+              $("#tablo").html(znt + "(-" + num2 + ")");
+            } else {
+              var reg2 = /\d/g;
+              $("#tablo").html(znt + "(" + num2.match(reg2).join("") + ")");
+            }
+            }
+          } else if (tab.indexOf("<") != -1) {
+            var st = $(".step").text();
+            if(st != "0") {
+              if(st.indexOf("-") == -1) {
+              $(".step").prepend("-");
+            } else {
+              var reg2 = /\d/g;
+              $(".step").html(st.match(reg2).join(""));
+            }
+            }
+          } else {
+            if(tab != "0") {
+              if(tab.indexOf("-") == -1) {
+              $("#tablo").prepend("-");
+            } else {
+              var reg2 = /\d/g;
+              $("#tablo").html(num2.match(reg2).join(""));
+            }
+          }
+          }
+        });
+        $(".st").click(function() {
+          var num = $(this).html();
+          var tab = $("#tablo").html();
+          if(tab == Infinity) {
+            tab = "0";
+            $("#tablo").html(tab);
+          }
+          var reg = /[%|+|<|√|=|–|×|÷|!|(]/i;
+          if(reg.test(tab) == false) {
+            if(num.indexOf("√") != -1) {
+              $("#tablo").prepend("<sup class='step' style='border:1px white dashed'>0</sup>&radic;");
+            } else if(num.indexOf("l") != -1){
+              $("#tablo").html("log<sub class='step' style='font-size:10px'>" + tab + "</sub>");
+            } else if(num.indexOf("<") != -1){
+              $("#tablo").append("<sup class='step' style='border:1px white dashed'>0</sup>");
+            } else if(num == "%") {
+              $("#tablo").append("%от");
+            } else if(num.indexOf("!") != -1) {
+              $("#tablo").append("!");
+            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+              $("#tablo").html(num + "(" + tab + ")");
+            } else {
+              $("#tablo").append(num);
+            }
+          } else {
+            var kon = tab.substring(tab.length - 1, tab.length);
+            var reg2 = /[+|–|×|÷]/i;
+            if(reg2.test(kon) == true) {
+                if(num.test(kon) == true) {
+              tab = tab.replace(reg, num);
+              $("#tablo").html(tab);
+              }
+            } else {
+              var tabt = $("#tablo").text();
+              if(tabt.indexOf("=") != -1) {
+                var otv = tabt.substring(tabt.indexOf("=") + 1, tabt.length);
+                if(num.indexOf("√") != -1) {
+                  $("#tablo").html("<sup class='step' style='border:1px white dashed'>0</sup>&radic;" + otv);
+                } else if(num.indexOf("l") != -1){
+              $("#tablo").html("log<sub class='step' style='font-size:10px'>" + otv + "</sub>");
+            } else if(num.indexOf("<") != -1){
+                  $("#tablo").html(otv + "<sup class='step' style='border:1px white dashed'>0</sup>");
+                } else if(num == "%") {
+              $("#tablo").html(otv + "%от");
+            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+              $("#tablo").html(num + "(" + otv + ")");
+            } else if(num.indexOf("!") != -1) {
+              $("#tablo").html(otv + "!");
+            } else {
+                  $("#tablo").html(otv + num);
+                }
+            } else if(tab.indexOf("√") != -1) {
+              var pok = $(".step").text();
+              var osn = tab.substring(tab.indexOf("√") + 1, tab.length);
+              var reg3 = /\d/g;
+              if(osn < 0 && pok % 2 == 1) {
+                osn = osn.match(reg3).join("");
+                var otv = Math.pow(osn, 1/pok);
+                otv = "-" + otv;
+              } else {
+                var otv = Math.pow(osn, 1/pok);
+              }
+              otv = Math.round(otv * 1000000) / 1000000;
+              if(isNaN(otv) == true) {
+                otv = Infinity;
+              }
+              if(otv != Infinity) {
+                if(num.indexOf("√") != -1) {
+                  $("#tablo").html("<sup class='step' style='border:1px white dashed'>0</sup>&radic;" + otv);
+                } else if(num.indexOf("l") != -1){
+              $("#tablo").html("log<sub class='step' style='font-size:10px'>" + otv + "</sub>");
+            } else if(num.indexOf("<") != -1){
+                  $("#tablo").html(otv + "<sup class='step' style='border:1px white dashed'>0</sup>");
+                } else if(num == "%") {
+              $("#tablo").html(otv + "%от");
+            } else if(num.indexOf("!") != -1) {
+              $("#tablo").html(otv + "!");
+            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+              $("#tablo").html(num + "(" + otv + ")");
+            } else {
+                  $("#tablo").html(otv + num);
+                }
+              } else {
+                $("#tablo").html(otv);
+              }
+            } else if(tab.indexOf("log") != -1) {
+              var osn = $(".step").text();
+              var pok = tab.substring(tab.lastIndexOf(">") + 1, tab.length);
+              var otv = Math.log(pok) / Math.log(osn);
+              otv = Math.round(otv * 1000000) / 1000000;
+              if(isNaN(otv) == true) {
+                otv = Infinity;
+              }
+              if(otv != Infinity) {
+                if(num.indexOf("√") != -1) {
+                  $("#tablo").html("<sup class='step' style='border:1px white dashed'>0</sup>&radic;" + otv);
+                } else if(num.indexOf("l") != -1){
+              $("#tablo").html("log<sub class='step' style='font-size:10px'>" + otv + "</sub>");
+            } else if(num.indexOf("<") != -1){
+                  $("#tablo").html(otv + "<sup class='step' style='border:1px white dashed'>0</sup>");
+                } else if(num == "%") {
+              $("#tablo").html(otv + "%от");
+            } else if(num.indexOf("!") != -1) {
+              $("#tablo").html(otv + "!");
+            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+              $("#tablo").html(num + "(" + otv + ")");
+            } else {
+                  $("#tablo").html(otv + num);
+                }
+              } else {
+                $("#tablo").html(otv);
+              }
+            } else if(tab.indexOf("!") != -1) {
+              alert();
+              var num1 = tab.substring(0, tab.indexOf("!"));
+              if(num1.indexOf(".") == -1 && num1.indexOf("-") == -1){
+                  num1 = parseFloat(num1);
+                 otv = 1;
+                 for(var i = 1; i <= num1; i++) {
+                    otv *= i;
+                 }
+              } else {
+                otv = Infinity;
+              }
+                if(otv != Infinity) {
+                 if(num.indexOf("√") != -1) {
+                  $("#tablo").html("<sup class='step' style='border:1px white dashed'>0</sup>&radic;" + otv);
+                } else if(num.indexOf("l") != -1){
+              $("#tablo").html("log<sub class='step' style='font-size:10px'>" + otv + "</sub>");
+            } else if(num.indexOf("<") != -1){
+                  $("#tablo").html(otv + "<sup class='step' style='border:1px white dashed'>0</sup>");
+                } else if(num == "%") {
+              $("#tablo").html(otv + "%от");
+            } else if(num.indexOf("!") != -1) {
+              $("#tablo").html(otv + "!");
+            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+              $("#tablo").html(num + "(" + otv + ")");
+            } else {
+                  $("#tablo").html(otv + num);
+                }
+              } else {
+                $("#tablo").html(otv);
+              }
+            } else if(tab.indexOf("<") != -1) {
+              var pok = $(".step").text();
+              var osn = tab.substring(0, tab.indexOf("<"));
+              var otv = Math.pow(osn, 1*pok);
+              otv = Math.round(otv * 1000000) / 1000000;
+              if(isNaN(otv) == true) {
+                otv = Infinity;
+              }
+              if(otv != Infinity) {
+                 if(num.indexOf("√") != -1) {
+                  $("#tablo").html("<sup class='step' style='border:1px white dashed'>0</sup>&radic;" + otv);
+                } else if(num.indexOf("l") != -1){
+              $("#tablo").html("log<sub class='step' style='font-size:10px'>" + otv + "</sub>");
+            } else if(num.indexOf("<") != -1){
+                  $("#tablo").html(otv + "<sup class='step' style='border:1px white dashed'>0</sup>");
+                } else if(num == "%") {
+              $("#tablo").html(otv + "%от");
+            } else if(num.indexOf("!") != -1) {
+              $("#tablo").html(otv + "!");
+            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+              $("#tablo").html(num + "(" + otv + ")");
+            } else {
+                  $("#tablo").html(otv + num);
+                }
+              } else {
+                $("#tablo").html(otv);
+              }
+            } else if(tab.indexOf("%") != -1) {
+              var num1 = tab.substring(0, tab.indexOf("%"));
+              var num2 = tab.substring(tab.indexOf("т") + 1);
+              var otv = num2 / 100 * num1;
+              otv = Math.round(otv * 1000000) / 1000000;
+              if(num.indexOf("√") != -1) {
+                  $("#tablo").html("<sup class='step' style='border:1px white dashed'>0</sup>&radic;" + otv);
+                } else if(num.indexOf("l") != -1){
+              $("#tablo").html("log<sub class='step' style='font-size:10px'>" + otv + "</sub>");
+            } else if(num.indexOf("<") != -1){
+                  $("#tablo").html(otv + "<sup class='step' style='border:1px white dashed'>0</sup>");
+                } else if(num == "%") {
+              $("#tablo").html(otv + "%от");
+            } else if(num.indexOf("!") != -1) {
+              $("#tablo").html(otv + "!");
+            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+              $("#tablo").html(num + "(" + otv + ")");
+            } else {
+                  $("#tablo").html(otv + num);
+                }
+            } else if(tab.indexOf("(") != -1) {
+              var num1 = tab.substring(tab.indexOf("(") + 1, tab.indexOf(")")); 
+              num1 = Math.PI / 180 * num1;
+              var znt = tab.substring(0, tab.indexOf("("));
+              if(znt == "sin") {
+                  var otv = Math.sin(num1);
+              } else if(znt == "cos") {
+                  var otv = Math.cos(num1);
+              } else if(znt == "tan") {
+                  var otv = Math.tan(num1);
+              } else if(znt == "cot") {
+                  var otv = 1 / Math.tan(num1);
+              }
+              otv = Math.round(otv * 1000000) / 1000000;
+              if(isNaN(otv) == true) {
+                otv = Infinity;
+              }
+              if(otv != Infinity) {
+                 if(num.indexOf("√") != -1) {
+                  $("#tablo").html("<sup class='step' style='border:1px white dashed'>0</sup>&radic;" + otv);
+                } else if(num.indexOf("l") != -1){
+              $("#tablo").html("log<sub class='step' style='font-size:10px'>" + otv + "</sub>");
+            } else if(num.indexOf("<") != -1){
+                  $("#tablo").html(otv + "<sup class='step' style='border:1px white dashed'>0</sup>");
+                } else if(num == "%") {
+              $("#tablo").html(otv + "%от");
+            } else if(num.indexOf("!") != -1) {
+              $("#tablo").html(otv + "!");
+            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+              $("#tablo").html(num + "(" + otv + ")");
+            } else {
+                  $("#tablo").html(otv + num);
+                }
+              } else {
+                $("#tablo").html(otv);
+              }
+            } else {
+                var zn = tab.match(reg);
+              var num1 = parseFloat(tab.substring(0, tab.indexOf(zn)));
+              var num2 = parseFloat(tab.substring(tab.indexOf(zn) + 1, tab.length));
+              if(zn == "+") {
+                var otv = num1 + num2;
+              } else if(zn == "–") {
+                var otv = num1 - num2;
+              } else if(zn == "×") {
+                var otv = num1 * num2;
+              } else if(zn == "÷") {
+                var otv = num1 / num2;
+              }
+              otv = Math.round(otv * 1000000) / 1000000;
+              if(isNaN(otv) == true) {
+                otv = Infinity;
+              }
+              if(otv != Infinity) {
+                 if(num.indexOf("√") != -1) {
+                  $("#tablo").html("<sup class='step' style='border:1px white dashed'>0</sup>&radic;" + otv);
+                } else if(num.indexOf("l") != -1){
+              $("#tablo").html("log<sub class='step' style='font-size:10px'>" + otv + "</sub>");
+            } else if(num.indexOf("<") != -1){
+                  $("#tablo").html(otv + "<sup class='step' style='border:1px white dashed'>0</sup>");
+                } else if(num == "%") {
+              $("#tablo").html(otv + "%от");
+            } else if(num.indexOf("!") != -1) {
+              $("#tablo").html(otv + "!");
+            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+              $("#tablo").html(num + "(" + otv + ")");
+            } else {
+                  $("#tablo").html(otv + num);
+                }
+              } else {
+                $("#tablo").html(otv);
+              }
+              }
+            }
+          }
+        });
+        $("#ravno").click(function() {
+          var tab = $("#tablo").html();
+          if(tab == Infinity) {
+            tab = "0";
+            $("#tablo").html(tab);
+          }
+          var reg = /[+|–|×|÷|<|%|=|!|(]/i;
+          if(reg.test(tab) == true) {
+            var kon = tab.substring(tab.length - 1, tab.length);
+            var reg2 = /[+|–|×|÷]/i;
+            if(reg2.test(kon) == true) {
+              tab = tab.substring(0, tab.length - 1);
+              $("#tablo").html(tab);
+            } else {
+              var tabt = $("#tablo").text();
+              if(tabt.indexOf("=") != -1) {
+                
+              } else if(tab.indexOf("√") != -1) {
+              var pok = $(".step").text();
+              var osn = tab.substring(tab.indexOf("√") + 1, tab.length);
+              var reg3 = /\d/g;
+              if(osn < 0 && pok % 2 == 1) {
+                osn = osn.match(reg3).join("");
+                var otv = Math.pow(osn, 1/pok);
+                otv = "-" + otv;
+              } else {
+                var otv = Math.pow(osn, 1/pok);
+              }
+                otv = Math.round(otv * 1000000) / 1000000;
+              if(isNaN(otv) == true) {
+                otv = Infinity;
+              }
+              if(otv != Infinity) {
+                 $("#tablo").append("=" + otv);
+              } else {
+                $("#tablo").html(otv);
+              }
+            } else if(tab.indexOf("log") != -1) {
+              var osn = $(".step").text();
+              var pok = tab.substring(tab.lastIndexOf(">") + 1, tab.length);
+              var otv = Math.log(pok) / Math.log(osn);
+              otv = Math.round(otv * 1000000) / 1000000;
+              if(isNaN(otv) == true) {
+                otv = Infinity;
+              }
+              if(otv != Infinity) {
+                $("#tablo").append("=" + otv);
+              } else {
+                $("#tablo").html(otv);
+              }
+            } else if(tab.indexOf("!") != -1) {
+              alert();
+              var num1 = tab.substring(0, tab.indexOf("!"));
+              if(num1.indexOf(".") == -1 && num1.indexOf("-") == -1){
+                  num1 = parseFloat(num1);
+                 otv = 1;
+                 for(var i = 1; i <= num1; i++) {
+                    otv *= i;
+                 }
+              } else {
+                otv = Infinity;
+              }
+                if(otv != Infinity) {
+                  $("#tablo").append("=" + otv);
+              } else {
+                $("#tablo").html(otv);
+              }
+            } else if(tab.indexOf("<") != -1) {
+              var pok = $(".step").text();
+              var osn = tab.substring(0, tab.indexOf("<"));
+              var otv = Math.pow(osn, 1*pok);
+              otv = Math.round(otv * 1000000) / 1000000;
+              if(isNaN(otv) == true) {
+                otv = Infinity;
+              }
+              if(otv != Infinity) {
+                $("#tablo").append("=" + otv);
+              } else {
+                $("#tablo").html(otv);
+              }
+            } else if(tab.indexOf("%") != -1) {
+              var num1 = tab.substring(0, tab.indexOf("%"));
+              var num2 = tab.substring(tab.indexOf("т") + 1);
+              var otv = num2 / 100 * num1;
+              otv = Math.round(otv * 1000000) / 1000000;
+              $("#tablo").append("=" + otv);
+            } else if(tab.indexOf("(") != -1) {
+              var num1 = tab.substring(tab.indexOf("(") + 1, tab.indexOf(")")); 
+              num1 = Math.PI / 180 * num1;
+              var znt = tab.substring(0, tab.indexOf("("));
+              if(znt == "sin") {
+                  var otv = Math.sin(num1);
+              } else if(znt == "cos") {
+                  var otv = Math.cos(num1);
+              } else if(znt == "tan") {
+                  var otv = Math.tan(num1);
+              } else if(znt == "cot") {
+                  var otv = 1 / Math.tan(num1);
+              }
+              alert(otv);
+              otv = Math.round(otv * 1000000) / 1000000;
+              if(isNaN(otv) == true) {
+                otv = Infinity;
+              }
+              if(otv != Infinity) {
+                 $("#tablo").append("=" + otv);
+              } else {
+                $("#tablo").html(otv);
+              }
+            } else {
+                var zn = tab.match(reg);
+              var num1 = parseFloat(tab.substring(0, tab.indexOf(zn)));
+              var num2 = parseFloat(tab.substring(tab.indexOf(zn) + 1, tab.length));
+              if(zn == "+") {
+                var otv = num1 + num2;
+              } else if(zn == "–") {
+                var otv = num1 - num2;
+              } else if(zn == "×") {
+                var otv = num1 * num2;
+              } else if(zn == "÷") {
+                var otv = num1 / num2;
+              }
+              otv = Math.round(otv * 1000000) / 1000000;
+              if(isNaN(otv) == true) {
+                otv = Infinity;
+              }
+              if(otv != Infinity) {
+                 $("#tablo").append("=" + otv);
+              } else {
+                $("#tablo").html(otv);
+              }
+            }
+            }
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="center">
+      <span id="tablo">0</span><br/>
+      <button class="but" id="str" style="background-color: #a0a0a0">c</button>
+      <button class="but" id="plmin" style="background-color: #a0a0a0; padding: 4px 4px">+/-</button>
+      <button class="but st" style="background-color: #a0a0a0; padding: 4px 6px">%</button>
+      <button class="but st" style="background-color: orange;color: white; padding: 3px 4px">log<sub>x</sub>y</button>
+      <button class="but st" style="background-color: orange;color: white; padding: 3px 4px">x!</button>
+      <button class="but num" style="background-color: orange;color: white; padding: 3px 4px">π</button><br/>
+      <button class="but num" style="background-color: #444;color: white">7</button>
+      <button class="but num" style="background-color: #444;color: white">8</button>
+      <button class="but num" style="background-color: #444;color: white">9</button>
+      <button class="but st" style="background-color: orange;color: white; padding: 3px 4px">x<sup>y</sup></button>
+      <button class="but st" style="background-color: orange;color: white; padding: 3px 4px"><sup>y</sup>&radic;x</button>
+      <button class="but st" style="background-color: orange;color: white; padding: 3px 4px">sin</button><br/>
+      <button class="but num" style="background-color: #444;color: white">4</button>
+      <button class="but num" style="background-color: #444;color: white">5</button>
+      <button class="but num" style="background-color: #444;color: white">6</button>
+      <button class="but st" style="background-color: orange;color: white">&times;</button>
+      <button class="but st" style="background-color: orange;color: white">&divide;</button>
+      <button class="but st" style="background-color: orange;color: white; padding: 3px 4px">cos</button><br/>
+      <button class="but num" style="background-color: #444;color: white">1</button>
+      <button class="but num" style="background-color: #444;color: white">2</button>
+      <button class="but num" style="background-color: #444;color: white">3</button>
+      <button class="but st" style="background-color: orange;color: white">+</button>
+      <button class="but st" style="background-color: orange;color: white">–</button>
+      <button class="but st" style="background-color: orange;color: white; padding: 3px 4px">tan</button><br/>
+      <button class="but num" style="background-color: #444;color: white; padding: 4px 24px">0</button>
+      <button class="but num" style="background-color: #444;color: white; padding: 4px 9px">.</button>
+      <button class="but" id="ravno" style="background-color: orange;color: white; padding: 4px 24px">=</button>
+      <button class="but st" style="background-color: orange;color: white; padding: 3px 4px">cot</button>
+    </div>
+  </body>
+</html>
