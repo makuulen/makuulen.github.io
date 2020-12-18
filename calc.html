@@ -178,20 +178,6 @@
               $(".step").html(st.match(reg2).join(""));
             }
             }
-          } else if(tab.indexOf("%") != -1) {
-            var num2 = tab.substring(tab.indexOf("т") + 1, tab.length);
-            if(num2 != "0") {
-              if(num2.indexOf("-") == -1) {
-              $("#tablo").html(tab.substring(0, tab.indexOf("т") + 1) + "-" + num2);
-            } else {
-              if(num2 != "-") {
-              var reg2 = /\d/g;
-              $("#tablo").html(tab.substring(0, tab.indexOf("%") + 1) + num2.match(reg2).join(""));
-              } else {
-                $("#tablo").html(tab.substring(0, tab.indexOf("%") + 1));
-              }
-            }
-            }
           } else {
             if(tab != "0") {
               if(tab.indexOf("-") == -1) {
