@@ -218,7 +218,7 @@ if(num == "." && num2.indexOf(".") != -1) {
             tab = "0";
             $("#tablo").html(tab);
           }
-          var reg = /[%|+|<|√|=|–|×|÷]/i;
+          var reg = /[%|+|<|√|=|–|×|÷|!]/i;
           if(reg.test(tab) == false) {
             if(num.indexOf("√") != -1) {
               $("#tablo").prepend("<sup class='step' style='border:1px white dashed'>0</sup>&radic;");
