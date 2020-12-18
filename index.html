@@ -257,7 +257,7 @@ if(num == "." && num2.indexOf(".") != -1) {
               $("#tablo").append("%от");
             } else if(num.indexOf("!") != -1) {
               $("#tablo").append("!");
-            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+            } else if(num == "sin" || num == "cos" || num == "tg" || num == "ctg") {
               $("#tablo").html(num + "(" + tab + ")");
             } else {
               $("#tablo").append(num);
@@ -282,7 +282,7 @@ if(num == "." && num2.indexOf(".") != -1) {
                   $("#tablo").html(otv + "<sup class='step' style='border:1px white dashed'>0</sup>");
                 } else if(num == "%") {
               $("#tablo").html(otv + "%от");
-            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+            } else if(num == "sin" || num == "cos" || num == "tg" || num == "ctg") {
               $("#tablo").html(num + "(" + otv + ")");
             } else if(num.indexOf("!") != -1) {
               $("#tablo").html(otv + "!");
@@ -315,7 +315,7 @@ if(num == "." && num2.indexOf(".") != -1) {
               $("#tablo").html(otv + "%от");
             } else if(num.indexOf("!") != -1) {
               $("#tablo").html(otv + "!");
-            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+            } else if(num == "sin" || num == "cos" || num == "tg" || num == "ctg") {
               $("#tablo").html(num + "(" + otv + ")");
             } else {
                   $("#tablo").html(otv + num);
@@ -342,7 +342,7 @@ if(num == "." && num2.indexOf(".") != -1) {
               $("#tablo").html(otv + "%от");
             } else if(num.indexOf("!") != -1) {
               $("#tablo").html(otv + "!");
-            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+            } else if(num == "sin" || num == "cos" || num == "tg" || num == "ctg") {
               $("#tablo").html(num + "(" + otv + ")");
             } else {
                   $("#tablo").html(otv + num);
@@ -373,7 +373,7 @@ if(num == "." && num2.indexOf(".") != -1) {
               $("#tablo").html(otv + "%от");
             } else if(num.indexOf("!") != -1) {
               $("#tablo").html(otv + "!");
-            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+            } else if(num == "sin" || num == "cos" || num == "tg" || num == "ctg") {
               $("#tablo").html(num + "(" + otv + ")");
             } else {
                   $("#tablo").html(otv + num);
@@ -400,7 +400,7 @@ if(num == "." && num2.indexOf(".") != -1) {
               $("#tablo").html(otv + "%от");
             } else if(num.indexOf("!") != -1) {
               $("#tablo").html(otv + "!");
-            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+            } else if(num == "sin" || num == "cos" || num == "tg" || num == "ctg") {
               $("#tablo").html(num + "(" + otv + ")");
             } else {
                   $("#tablo").html(otv + num);
@@ -423,7 +423,7 @@ if(num == "." && num2.indexOf(".") != -1) {
               $("#tablo").html(otv + "%от");
             } else if(num.indexOf("!") != -1) {
               $("#tablo").html(otv + "!");
-            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+            } else if(num == "sin" || num == "cos" || num == "tg" || num == "ctg") {
               $("#tablo").html(num + "(" + otv + ")");
             } else {
                   $("#tablo").html(otv + num);
@@ -436,9 +436,9 @@ if(num == "." && num2.indexOf(".") != -1) {
                   var otv = Math.sin(num1);
               } else if(znt == "cos") {
                   var otv = Math.cos(num1);
-              } else if(znt == "tan") {
+              } else if(znt == "tg") {
                   var otv = Math.tan(num1);
-              } else if(znt == "cot") {
+              } else if(znt == "ctg") {
                   var otv = 1 / Math.tan(num1);
               }
               otv = Math.round(otv * 1000000) / 1000000;
@@ -456,7 +456,7 @@ if(num == "." && num2.indexOf(".") != -1) {
               $("#tablo").html(otv + "%от");
             } else if(num.indexOf("!") != -1) {
               $("#tablo").html(otv + "!");
-            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+            } else if(num == "sin" || num == "cos" || num == "tg" || num == "ctg") {
               $("#tablo").html(num + "(" + otv + ")");
             } else {
                   $("#tablo").html(otv + num);
@@ -492,7 +492,7 @@ if(num == "." && num2.indexOf(".") != -1) {
               $("#tablo").html(otv + "%от");
             } else if(num.indexOf("!") != -1) {
               $("#tablo").html(otv + "!");
-            } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
+            } else if(num == "sin" || num == "cos" || num == "tg" || num == "ctg") {
               $("#tablo").html(num + "(" + otv + ")");
             } else {
                   $("#tablo").html(otv + num);
