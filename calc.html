@@ -313,6 +313,33 @@ if(num == "." && num2.indexOf(".") != -1) {
               } else {
                 $("#tablo").html(otv);
               }
+            } else if(tab.indexOf("!") != -1) {
+              var num1 = tab.substring(0, tab.indexOf("!"));
+              if(num1.indexOf(".") == -1 && num1.indexOf("-") == -1){
+                  num1 = parseFloat(num1);
+                 for(var otv = 1; otv <= num1; otv++) {
+                    otv *= otv;
+                 }
+              } else {
+                otv = Infinity;
+              }
+                if(otv != Infinity) {
+                 if(num.indexOf("√") != -1) {
+                  $("#tablo").html("<sup class='step' style='border:1px white dashed'>0</sup>&radic;" + otv);
+                } else if(num.indexOf("l") != -1){
+              $("#tablo").html("log<sub class='step' style='font-size:10px'>" + otv + "</sub>");
+            } else if(num.indexOf("<") != -1){
+                  $("#tablo").html(otv + "<sup class='step' style='border:1px white dashed'>0</sup>");
+                } else if(num == "%") {
+              $("#tablo").html(otv + "%от");
+            } else if(num.indexOf("!") != -1) {
+              $("#tablo").html(otv + "!");
+            } else {
+                  $("#tablo").html(otv + num);
+                }
+              } else {
+                $("#tablo").html(otv);
+              }
             } else if(tab.indexOf("<") != -1) {
               var pok = $(".step").text();
               var osn = tab.substring(0, tab.indexOf("<"));
