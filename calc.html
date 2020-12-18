@@ -92,6 +92,15 @@
               num = "0" + num;
             }
             $("#tablo").append(num);
+          } else if (tab.indexOf("!") != -1) {
+            var num2 = tabt.substring(0, tabt.indexOf("!"));
+            if(num2 == "-") {
+              num2 = "";
+            }
+            if(num2 == "" && num == "."){
+              num = "0" + num;
+            }
+            $("#tablo").html(num2 + num + "!");
           } else if(tab.indexOf("<") != -1) {
             var st = $(".step").text();
             if(st == "0") {
@@ -128,7 +137,7 @@
             $("#tablo").html(tab);
           }
           var tabt = $("#tablo").text();
-          var reg = /[+|–|×|÷|т|!]/i;
+          var reg = /[+|–|×|÷|т]/i;
           if(tabt.indexOf("=") != -1) {
             var num2 = tabt.substring(tabt.indexOf("=") + 1, tabt.length);
             if(num2 != "0") {
@@ -166,6 +175,16 @@
               } else {
                 $("#tablo").html(tab.substring(0, tab.lastIndexOf(">") + 1));
               }
+            }
+            }
+          } else if (tab.indexOf("!") != -1) {
+            var num2 = tab.substring(0, tab.indexOf("!"));
+            if(num2 != "0") {
+              if(num2.indexOf("-") == -1) {
+              $("#tablo").html("-" + num2 + "!");
+            } else {
+              var reg2 = /\d/g;
+              $("#tablo").html(num2.match(reg2).join("") + "!");
             }
             }
           } else if (tab.indexOf("<") != -1){
