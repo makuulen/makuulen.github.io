@@ -231,7 +231,7 @@ if(num == "." && num2.indexOf(".") != -1) {
             } else if(num.indexOf("!") != -1) {
               $("#tablo").append("!");
             } else if(num == "sin" || num == "cos" || num == "tan" || num == "cot") {
-              $("#tablo").append(num + "(" + tab + ")");
+              $("#tablo").html(num + "(" + tab + ")");
             } else {
               $("#tablo").append(num);
             }
