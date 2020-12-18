@@ -128,7 +128,7 @@
             $("#tablo").html(tab);
           }
           var tabt = $("#tablo").text();
-          var reg = /[+|–|×|÷]/i;
+          var reg = /[+|–|×|÷|т]/i;
           if(tabt.indexOf("=") != -1) {
             var num2 = tabt.substring(tabt.indexOf("=") + 1, tabt.length);
             if(num2 != "0") {
@@ -492,7 +492,7 @@
       <button class="but" id="plmin" style="background-color: #a0a0a0; padding: 4px 4px">+/-</button>
       <button class="but st" style="background-color: #a0a0a0; padding: 4px 6px">%</button>
       <button class="but st" style="background-color: orange;color: white; padding: 3px 4px">log<sub>x</sub>y</button>
-      <button class="but st" style="background-color: orange;color: white; padding: 3px 4px">!x</button><br/>
+      <button class="but st" style="background-color: orange;color: white; padding: 3px 4px">x!</button><br/>
       <button class="but num" style="background-color: orange;color: white; padding: 3px 4px">π</button>
       <button class="but num" style="background-color: #444;color: white">7</button>
       <button class="but num" style="background-color: #444;color: white">8</button>
