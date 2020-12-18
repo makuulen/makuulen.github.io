@@ -429,7 +429,7 @@ if(num == "." && num2.indexOf(".") != -1) {
             tab = "0";
             $("#tablo").html(tab);
           }
-          var reg = /[+|–|×|÷|<|%|=]/i;
+          var reg = /[+|–|×|÷|<|%|=|!]/i;
           if(reg.test(tab) == true) {
             var kon = tab.substring(tab.length - 1, tab.length);
             var reg2 = /[+|–|×|÷]/i;
