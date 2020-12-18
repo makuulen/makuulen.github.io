@@ -473,6 +473,23 @@ if(num == "." && num2.indexOf(".") != -1) {
               } else {
                 $("#tablo").html(otv);
               }
+            } else if(tab.indexOf("!") != -1) {
+              alert();
+              var num1 = tab.substring(0, tab.indexOf("!"));
+              if(num1.indexOf(".") == -1 && num1.indexOf("-") == -1){
+                  num1 = parseFloat(num1);
+                 otv = 1;
+                 for(var i = 1; i <= num1; i++) {
+                    otv *= i;
+                 }
+              } else {
+                otv = Infinity;
+              }
+                if(otv != Infinity) {
+                  $("#tablo").append("=" + otv);
+              } else {
+                $("#tablo").html(otv);
+              }
             } else if(tab.indexOf("<") != -1) {
               var pok = $(".step").text();
               var osn = tab.substring(0, tab.indexOf("<"));
