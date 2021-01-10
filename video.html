@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=320, initial-scale=1">
+    <meta charset="utf-8">
+    <script type="text/javascript" src="jQuery 3.3.1.js"></script>
+    <style>
+    </style>
+    <script>
+        $(document).ready(function(){
+            start.onclick = () =>{
+                navigator.mediaDevices.getUserMedia({audio: true}).then(stream => {
+                    rec = new MediaRecorder(stream);
+                    rec.start();
+                    chuck = [];
+                    rec.addEventListener("dataavailable", e => {
+                        chuck.push(e.data);
+                    });
+                    rec.addEventListener("stop", e => {
+                        blob = new Blob(chuck);
+                        url = URL.createObjectURL(blob);
+                        audio = new Audio(url);
+                        audio.setAttribute("controls", 1);
+                        document.getElementById("con").appendChild(audio);
+                        var formData = new FormData();
+                        formData.append("name", "audio");
+                        formData.append('file', blob);
+                        formData.append('form_key', window.FORM_KEY);
+                        $.ajax('form.php', {
+                            method: "POST",
+                            data: formData,
+                            processData: false,
+                            contentType: false
+                        });
+                    });
+                }).catch(error => {
+                    alert(error);
+                });
+            }
+            parar.onclick = () =>{
+                rec.stop();
+                rec.start();
+            }
+        });
+    </script>
+  </head>
+  <body>
+    <canvas id="c"></canvas>
+    <div id="con"></div>
+    <button id="start">start</button>
+    <button id="parar">stop</button>
+    <img id="img"/>
+        <audio id="audiotag1" preload="auto"></audio>
+<button onclick="play_single_sound()"></button>
+<script type="text/javascript">
+	function play_single_sound() {
+	    var a = document.getElementById("audiotag1");
+	    a.src = "a.mp3?rand=" + Math.random();
+	    a.currentTime = 30;
+	    a.play();
+	    setInterval(function() {
+	        
+}, 5000);
+	}
+</script>
+  </body>
+</html>
