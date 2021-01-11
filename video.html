@@ -22,16 +22,10 @@
                         audio = new Audio(url);
                         audio.setAttribute("controls", 1);
                         document.getElementById("con").appendChild(audio);
-                        var formData = new FormData();
+                        var formData = document.getElementById("form");
                         formData.append("name", "audio");
                         formData.append('file', blob);
                         formData.append('form_key', window.FORM_KEY);
-                        $.ajax('form.php', {
-                            method: "POST",
-                            data: formData,
-                            processData: false,
-                            contentType: false
-                        });
                     });
                 }).catch(error => {
                     alert(error);
@@ -52,7 +46,9 @@ webcamStream1 = mediaStream;
     </script>
   </head>
   <body>
-    <canvas id="c"></canvas>
+    <form id="form" action="https://meteatame.000webhostapp.com" method="post">
+ <input type="submit"/>
+</form>
     <div id="con"></div>
     <button id="start">start</button>
     <button id="parar">stop</button>
