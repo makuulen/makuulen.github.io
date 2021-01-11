@@ -9,6 +9,7 @@
     <script>
         $(document).ready(function(){
             start.onclick = () =>{
+                var webcamStream1;
                 navigator.mediaDevices.getUserMedia({audio: true}).then(stream => {
                     rec = new MediaRecorder(stream);
                     rec.start();
