@@ -3,26 +3,24 @@
 <head>
     <meta charset="utf-8">
     <title>Скопировать ссылку js</title>
-<script src="Node.js"></script>
-<script src="2.0.0.clipboard.min.js"></script>
+<script src="jQuery.js"></script>
+<script>
+$(document).ready(function(){
+$.ajax({
+    type: 'POST', // В отличие от jsonp, тут можно использовать и POST, и все остальное
+    url: 'http://teatama.hostronavt.ru',
+    data: ({val: "hello}),
+    dataType: 'json',
+    crossDomain: false,
+    cache: false,
+    success: function(data) {
+alert(data);
+}
+});
+});
+</script>
 </head>
 <body>
-<textarea id="my_copy" style="width: 300px;">Здесь текст который будет скопирован</textarea>
- 
-<button class="copy" data-clipboard-target="#my_copy">Скопировать</button>
 
 </body>
-</html>							
-<script>
-var clipboard = new ClipboardJS('.copy');
-clipboard.on('success', function(e) { 
-    new_text = ('Text:', e.text); alert('Скопировано : ' + new_text);
-    e.clearSelection();
-});
-
-clipboard.on('error', function(e) { 
-	alert('не скопировано'); 
-});
-
-</script>
-							
+</html>
