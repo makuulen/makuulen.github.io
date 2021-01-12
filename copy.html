@@ -11,7 +11,7 @@ $.ajax({
     url: 'http://teatama.hostronavt.ru',
     data: ({val: "hello"}),
     dataType: 'json',
-    crossDomain: false,
+    crossDomain: true,
     cache: false,
     success: function(data) {
 alert(data);
