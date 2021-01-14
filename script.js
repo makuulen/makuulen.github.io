@@ -1,15 +1,10 @@
 $(document).ready(function () {
-alert();
-	$.ajax({
-		type: "GET",
-		url: "http://teatama.hostronavt.ru/counter.php?callback=?",
-		dataType: 'jsonp',
-		success: function (data){
-                        alert(data.counter);
-			$('.text .counter').html(data.counter);
-		},
-                error: function(){
-alert("ошибка");
-}
-	});
+var formData = new FormData();
+
+formData.append("username", "Groucho");
+formData.append("accountnum", 123456);
+
+var request = new XMLHttpRequest();
+request.open("POST", "http://teatama.hostronavt.ru");
+request.send(formData);
 });
