@@ -4,10 +4,22 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Cross-domain ajax с помощью jQuery - Frameworks.su</title>
 	<script src="jQuery.js" ></script>
-	<script src="script.js"></script>
+	<script>
+$(document).ready(function () {
+$.ajax({
+    type: 'post',
+    url: 'https://meteatame.000webhostapp.com/form.php',
+    data: ({}),
+    dataType: 'html',
+    crossDomain: true,
+    success: function(data) {
+alert(data);
+}
+});
+});
+</script>
 </head>
 <body>
-	<div class="text">Количество чего либо на сервере hostronavt.ru - <span class="counter"><span></div>
-		<iframe src="http://teatama.hostronavt.ru"></iframe>
+	
 </body>
 </html>
