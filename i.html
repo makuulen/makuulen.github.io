@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=320, initial-scale=1">
+    <meta charset="utf-8">
+<script src="jQuery.js"></script>
+    <style>
+      
+    </style>
+    <script>
+$(document).ready(function(){
+var el = document.getElementById("canvas");
+  el.addEventListener("touchstart", function handleStart(evt) {
+  evt.preventDefault();
+  console.log("touchstart.");
+  var el = document.getElementById("canvas");
+  var ctx = el.getContext("2d");
+  var touches = evt.changedTouches;
+        alert(touches);
+});
+  el.addEventListener("touchmove", function handleMove(evt) {
+  evt.preventDefault();
+        console.log("touchmove.");
+  var el = document.getElementById("canvas");
+  var ctx = el.getContext("2d");
+  var touches = evt.changedTouches;
+        alert(touches);
+});
+  el.addEventListener("touchend", function handleEnd(evt) {
+  evt.preventDefault();
+  console.log("touchend");
+  var el = document.getElementById("canvas");
+  var ctx = el.getContext("2d");
+  var touches = evt.changedTouches;
+        alert(touches);
+});
+  var ongoingTouches = [];
+});
+    </script>
+  </head>
+  <body>
+    <canvas id="canvas" width="600" height="600" style="border:solid black 1px;">
+  Ваш браузер не поддерживает элемент canvas.
+</canvas>
+<br>
+Log: <pre id="log" style="border: 1px solid #ccc;"></pre>
+  </body>
+</html>
