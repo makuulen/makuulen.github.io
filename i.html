@@ -15,7 +15,7 @@ var el = document.getElementById("canvas");
   console.log("touchstart.");
   var el = document.getElementById("canvas");
   var ctx = el.getContext("2d");
-  var touches = evt.changedTouches;
+  var touches = evt.pageX;
         alert(touches);
 });
   el.addEventListener("touchmove", function handleMove(evt) {
@@ -23,7 +23,7 @@ var el = document.getElementById("canvas");
         console.log("touchmove.");
   var el = document.getElementById("canvas");
   var ctx = el.getContext("2d");
-  var touches = evt.changedTouches;
+  var touches = evt.pageX;
         alert(touches);
 });
   el.addEventListener("touchend", function handleEnd(evt) {
@@ -31,7 +31,7 @@ var el = document.getElementById("canvas");
   console.log("touchend");
   var el = document.getElementById("canvas");
   var ctx = el.getContext("2d");
-  var touches = evt.changedTouches;
+  var touches = evt.pageX;
         alert(touches);
 });
   var ongoingTouches = [];
