@@ -4,14 +4,16 @@
     <meta name="viewport" content="width=320, initial-scale=1">
     <meta charset="utf-8">
     <script type="text/javascript" src="jQuery 3.3.1.js"></script>
-    <meta name="surfe.pro" content="f41ba29764548a2b401ec370b79fbe68">
     <style>
     </style>
     <script>
-        
+        $(document).ready(function(){
+        	$("iframe").css("width", $(document).width());
+        $("iframe").css("height", $(document).height());
+        });
     </script>
   </head>
   <body>
-    
+    <iframe src="game.html"></iframe>
   </body>
 </html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=320, initial-scale=1">
+    <meta charset="utf-8">
+    <script type="text/javascript" src="jQuery 3.3.1.js"></script>
+    <style>
+      #bodygame {
+position: absolute;
+        margin: auto;
+        width: 100%;
+        height: 100%;
+        right: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
+      }
+      #can {
+        height: 90%;
+        width: 100%;
+border: 3px solid black;
+      }
+      #info {
+font-size: 20px;
+      }
+    </style>
+    <script>
+      var w0, h0, cx, wcx, hcx, can,xg, yg, xp, yp, wp, hp, set1, set2, set3, sett, set4;
+      $(document).ready(function() {
+        w0 = $(window).width();
+ h0 = $(window).height();
+$("#can").click(function() {
+          $(jump());
+        });
+        $(start());
+        /*if(w0 > h0) {
+          $(start());
+        } else {
+          alert("Поверните экран");
+        }*/
+        $(window).resize(function() {
+          w0 = $(window).width();
+h0 = $(window).height();
+          if(w0 > h0) {
+          $(start());
+        } else {
+          alert("Поверните экран");
+        }
+        });
+      });
+      function start() {
+        $("#score").text("0");
+wcx = parseFloat($("#can").width());
+hcx = parseFloat($("#can").height());
+can = document.getElementById("can");
+can.width = wcx;
+        can.height = hcx;
+xg = 0;
+        yg = hcx / 2;
+        cx = can.getContext("2d");
+        cx.beginPath();
+cx.fillStyle = "#007600";
+        cx.fillRect(xg, yg, wcx, hcx / 2);
+        cx.fill();
+        cx.closePath();
+        $(person());
+$(run(xg + wcx - wp, yg - hp, wp, hp));
+        $(ran());
+        $(score());
+      }
+      function score() {
+        set4 = setInterval(function(){
+           var s = parseInt($("#score").text());
+          s += 1;
+$("#score").text(s);
+        }, 500);
+      }
+      function person() {
+wp = 30;
+        hp = 30;
+        yp = yg - hp;
+        xp = wcx * 0.2;
+        cx.beginPath();
+cx.fillStyle = "black";
+        cx.fillRect(xp, yp, wp, hp);
+        cx.fill();
+        cx.closePath();
+        cx.beginPath();
+cx.fillStyle = "blue";
+        cx.fillRect(xg + wcx - wp, yp, wp, hp);
+        cx.fill();
+        cx.closePath();
+      }
+      function ran() {
+        do {
+var time = Math.round(Math.random() * 2500);
+        } while(time < 1000);
+        sett = setTimeout(function(){
+$(run(xg + wcx - wp, yg - hp, wp, hp));
+          $(ran());
+        }, time);
+      }
+      function run(xk, yk, wk, hk) {
+        wk = parseFloat(wk);
+        xk = parseFloat(xk);
+hk = parseFloat(hk);
+        yk = parseFloat(yk);
+        set1 = setInterval(function(){
+          cx.clearRect(xk -1, yk - 1, wk+ 2, hk+1.25);
+          xk = xk - (0.1 * wk);
+ cx.beginPath();
+cx.fillStyle = "blue";
+        cx.fillRect(xk, yk, wk, hk);
+        cx.fill();
+        cx.closePath();
+          if(xk <= xp + wp && xk >= xp && yk <= yp + hp && yk >= yp) {
+            clearInterval(set1);
+clearInterval(set2);
+clearInterval(set3);
+clearInterval(set4);
+            clearTimeout(sett);
+var s = parseInt($("#score").text());
+            setTimeout(function(){
+                document.location = document.location;
+            }, 2000);
+          }
+        }, 10);
+      }
+      function jump() {
+        if(yp > yg - wp * 2) {
+         set2 = setInterval(function(){
+cx.clearRect(xp, yp-1, wp, hp +1.25);
+          yp = yp - (0.1 * hp);
+ cx.beginPath();
+            cx.fillStyle = "black";
+        cx.fillRect(xp, yp, wp, hp);
+        cx.fill();
+        cx.closePath();
+           if(yp < yg - wp * 2) {
+             clearInterval(set2);
+             setTimeout(function(){
+               $(jump());
+             }, 450);
+           }
+          }, 5);
+        } else {
+set3 = setInterval(function(){
+cx.clearRect(xp, yp-1, wp, hp +1.25);
+          yp = yp + (0.1 * hp);
+ cx.beginPath();
+            cx.fillStyle = "black";
+        cx.fillRect(xp, yp, wp, hp);
+        cx.fill();
+        cx.closePath();
+           if(yp + hp >= yg) {
+             clearInterval(set3);
+           }
+          }, 5);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="bodygame">
+      <div id="info">
+        Счёт: <span id="score"></span>XP: <span id="xp"></span>
+      </div>
+      <canvas id="can"></canvas>
+    </div>
+  </body>
+</html>
