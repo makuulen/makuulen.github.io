@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=320, initial-scale=1">
+    <meta charset="utf-8">
+    <script src="jQuery 3.3.1.js"></script>
+    <style>
+      #buts{
+          position: absolute;
+          margin: auto;
+          right: 0;
+          left: 0;
+          bottom: 0;
+          width:  100%;
+          height: 60%;
+          text-align: center;
+      }
+      .but{
+          margin: 1%;
+      }
+      span {
+font-size: 20px;
+       max-width: 100%;
+}
+    </style>
+    <script>
+    var t0, k, p, t, t1, t2;
+      $(document).ready(function() {
+          var w0 = $("#buts").width();
+          var h0 = $("#buts").height();
+          var h = Math.pow(w0*h0/50, 1/2);
+          var w = h * 1.5;
+          var num = new Array();
+          num = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "+", "-", "x", "x<sup>y</sup>", "&#247;", "="];
+          for(var i = 0; i < 16; i++){
+            if(num[i] == "="){
+                $("#buts").append("<button id='but'>" + num[i] + "</button>");
+            }else{
+          $("#buts").append("<button class='but'>" + num[i] + "</button>");
+          }
+          }
+          $(".but").width(w);
+          $(".but").height(h-10);
+          $(".but").css("font-size", $(".but").width() / 5);
+          $("#but").width(w0 - 40);
+          $("#but").height(h-10);
+          $("#but").css("font-size", $(".but").width() / 5);
+          var u = $("#math").html();
+          $(".but").click(function(){
+              var u = $("#math").html();
+              var n = $(this).html();
+              if(n != "x<sup>y</sup>" && n != "÷"){
+                  if(u.substring(u.length-1, u.length) == ">"){
+                      if(/\d/g.test(n) == true){
+                          $("#math sup:last").css("border", "none");
+                          if($("#math sup:last").text() == "_"){
+                          $("#math sup:last").text("");
+                          }
+                          $("#math sup:last").append(n);
+                      } else {
+                          $("#math").append(n);
+                      }
+                  } else {
+                      $("#math").append(n);
+                  }
+              } else if (n == "x<sup>y</sup>"){
+                  if(u.substring(u.length, u.length-1) != ">"){
+                      $("#math").append("x<sup style='border:1px solid black'>_</sup>");
+                }
+              } else if (n ==  "÷"){
+                  $("#math").prepend("(");
+                  $("#math").append(")÷(");
+              }
+          });
+        $("#but").click(function() {
+            $("#math").append(")");
+var u = $("#math").html();
+          if(u.indexOf("(") != -1) {
+            t1 = u.substring(u.indexOf("(") + 1, u.indexOf(")"));
+            t2 = u.substring(u.lastIndexOf("(") + 1, u.lastIndexOf(")"));
+          } else {
+t = u;
+          }
+          var as1 = newdata(t1);
+          var as2 = newdata(t2);
+          var pr = true;
+          for(var i = 0; i < as1.length; i++){
+              if(!as1[i]){
+                  as1[i] = "0";
+              }
+          }
+          for(var i = 0; i < as2.length; i++){
+              if(!as2[i]){
+                  as2[i] = "0";
+              }
+          }
+          var otv = new Array();
+          while(as1.length >= as2.length && pr == true){
+              var kk = parseInt(as1[as1.length-1]) / parseInt(as2[as2.length-1]);
+              var kp = as1.length - as2.length;
+              if(Math.floor(kk) == kk){
+                  otv[kp] = kk;
+                  var as0 = new Array();
+                  var as01 = new Array();
+                  for(var i = 0; i < as2.length + kp; i++){
+                      if(!as2[i-kp]){
+                          as01[i] = "0";
+                      } else {
+                          as01[i] = as2[i-kp];
+                      }
+                  }
+                  for(var i = 0; i < as1.length-1; i++){
+                      as0[i] = as1[i] - as01[i] * kk;
+                  }
+                  as1 = as0;
+              } else {
+                  pr = false;
+              }
+          }
+          var o = "";
+          for(var i = 0; i < otv.length; i++){
+            if(!otv[i]) {
+              otv[i] = "0";
+            }
+            if(parseInt(otv[i]) > 0) {
+              otv[i] = "+" + otv[i];
+            }
+            otv[i] += "";
+              if (i == 0){
+                if(otv[i] != "0"){
+                  o = otv[i] + o;
+                }
+              } else if(i == 1){
+                  if(otv[i] != "0"){
+                      if(otv[i] == "+1"){
+                          o = "+x" + o;
+                      } else if(otv[i] == "-1"){
+                          o = "-" + "x" + o;
+                      } else {
+                          o = otv[i] + "x" + o;
+                      }
+                  }
+              } else {
+                  if(otv[i] != "0"){
+                      if(otv[i] == "+1"){
+                          o = "+x<sup>" + i + "</sup>" + o;
+                      } else if(otv[i] == "-1"){
+                          o = "-" + "x<sup>" + i + "</sup>" + o;
+                      } else {
+                          o = otv[i] + "x<sup>" + i + "</sup>" + o;
+                      }
+                  }
+              }
+          }
+          if(o.substring(0, 1) == "+"){
+              o = o.substring(1, o.length);
+          }
+          var r = "";
+          for(var i = 0; i < as1.length; i++){
+            if(!otv[i]) {
+              otv[i] = "0";
+            }
+if(parseInt(as1[i]) > 0) {
+              as1[i] = "+" + as1[i];
+            }
+            as1[i] += "";
+              if (i == 0){
+                  if(as1[i] != "0"){
+                      r = as1[i] + r;
+                  }
+              } else if(i == 1){
+                  if(as1[i] != "0"){
+                      if(as1[i] == "+1"){
+                          r = "+x" + r;
+                      } else if(as1[i] == "-1"){
+                          r = "-" + "x" + r;
+                      } else {
+                          r = as1[i] + "x" + r;
+                      }
+                  }
+              } else {
+                  if(as1[i] != "0"){
+                      if(as1[i] == "+1"){
+                          r = "+x<sup>" + i + "</sup>" + r;
+                      } else if(as1[i] == "-1"){
+                          r = "-" + "x<sup>" + i + "</sup>" + r;
+                      } else {
+                          r = as1[i] + "x<sup>" + i + "</sup>" + r;
+                      }
+                  }
+              }
+          }
+          if(r.substring(0, 1) == "+"){
+              r = r.substring(1, r.length);
+          }
+if(o == "") {
+            if(pr == true) {
+              o = "0";
+            } else {
+              o = "1";
+            }
+          }
+          if(r == "" || r == "0"){
+              $("#otv").html("Ответ: M(x) = " + o + ".");
+             } else {
+          $("#otv").html("Ответ: M(x) = " + o + ", R(x) = " + r + ".");
+          }
+        });
+        $("#ster").click(function(){
+            $("#math").html("");
+            $("#otv").html("");
+        });
+      });
+      function newdata(t){
+          var as = new Array();
+          if(t.substring(0,1) != "-") {
+            t = "+" + t;
+          }
+          while(t != "") {
+            var s1 = t.substring(0, 1);
+            t = t.substring(1, t.length);
+            if(/[+-]/i.test(t) == true) {
+  var s2 = t.match(/[+-]/i);
+            t0 = t.substring(0, t.indexOf(s2));
+              t = t.substring(t.indexOf(s2), t.length); 
+            } else {
+              t0 = t.substring(0,t.length);
+              t = "";
+            }
+            if(t0.indexOf("x") != -1) {
+              if(t0.indexOf("<") != -1) {
+                p = parseFloat(t0.substring(t0.indexOf(">") + 1, t0.indexOf("</")));
+t0 = t0.substring(0, t0.indexOf("<"));
+              } else {
+                p = 1;
+              }
+            } else {
+               p = 0;
+            }
+            if(/\d/g.test(t0) == true) {
+              k = t0.match(/\d/g).join("");
+            } else {
+              k = 1;
+            }
+            if(s1 == "-") {
+              k = s1 + k;
+            }
+            if(as[p] != undefined) {
+              as[p] = parseFloat(as[p]) + parseFloat(k);
+            } else {
+              as[p] = k;
+            }
+          }
+          return as;
+      }
+    </script>
+  </head>
+  <body>
+    <span id="math"></span><br/><br/><br>
+    <span id="otv"></span>
+<div id="buts">
+    <button id="ster">Стереть</button><br/></div>
+  </body>
+  </html>
