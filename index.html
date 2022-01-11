@@ -8,8 +8,16 @@
     </style>
     <script>
         $(document).ready(function(){
-        	$("iframe").css("width", $(document).width());
-        $("iframe").css("height", $(document).height());
+          if(document.location.search == "?clip"){
+            var set = setInterval(function(){
+          navigator.clipboard.readText().then(text => {
+            if(text != ""){
+              navigator.clipboard.writeText("");
+              $("#src0").attr("src", text);
+            }
+          });
+            }, 1000);
+          }
         });
     </script>
   </head>
