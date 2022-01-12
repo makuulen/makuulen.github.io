@@ -2,29 +2,491 @@
 <html>
   <head>
     <meta name="viewport" content="width=320, initial-scale=1">
+    <title>Мебель в СПб - очень дёшево</title>
+    <meta name="keywords" content="мебель, Мебель, МЕБЕЛЬ, дёшево, качественно, со склада, спб, СПб, Санкт-Петербург, Питер, Красносельский район"/>
     <meta charset="utf-8">
-    <script type="text/javascript" src="jQuery 3.3.1.js"></script>
+    <script src="jQuery 3.3.1.js"></script>
     <style>
+      body {
+        background: url("fon.jpg") no-repeat center center fixed;
+        background-size: cover;
+      }
+      h3 {
+          text-align: center;
+          background-color: rgba(170,255,174,.59);
+      }
+      #futer {
+          position: absolute;
+        right: 0;
+        left: 0;
+        margin: auto;
+        font-size: 50px;
+        font-family: Comic Sans MS, Comic Sans, cursive;
+        width: 200px;
+        height: 60px;
+        background-color: rgba(170,255,174,.59);
+        border-radius: 15px;
+    }
+    #clmenu {
+        cursor: pointer;
+    }
+    #menu span {
+        cursor: pointer;
+    }
+      #menu {
+        width: 100%;
+        position: absolute;
+        right: 0;
+        left: 0;
+        top:0;
+        bottom: 0;
+        text-align: center;
+        background-color: black;
+        color: white;
+        display: none;
+        font-family: Verdana, sans-serif;
+      }
+      .blockmeb {
+          margin: 10px;
+        width: 95%;
+        height: 250px;
+        border: 3px solid #ff2bbb;
+      }
+      .blockkar {
+          margin: 10px;
+        width: 95%;
+        height: 200px;
+        border: 3px solid #ff2bbb;
+      }
+      .imgform{
+        position: relative;
+        float: left;
+        width: 50%;
+        height:100%;
+        text-align: center;
+        background-color: #5fffd3;
+      }
+      .glimg {
+          max-height: 80%;
+          max-width: 100%;
+          margin: 5px;
+      }
+      .img {
+          cursor: pointer;
+      }
+      .textform{
+        position: relative;
+        float: right;
+        width: 50%;
+        text-align: center;
+        height: 100%;
+        background-color: #5fffd3;
+      }
+      .textmeb {
+        display: block;
+        overflow: auto;
+        height: 65%;
+      }
+      #kontakt {
+        width: 100%;
+        text-align: center;
+        border-radius: 10px;
+        background-color: rgba(160,121,255,.75);
+      }
+      .info {
+        color: #ff079f;
+        font-weight: bold;
+      }
+      textarea {
+        width: 200px;
+        height: 100px;
+      }
+      #mesmeb {
+        background-color: rgba(170,255,174,.59);
+      }
+      #vhreg {
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        top: 0;
+        width: 200px;
+        height: 100px;
+        padding: 10px;
+        margin: auto;
+        border-radius: 5px;
+        background-color: rgba(170,255,174,.59);
+      }
+      #cod {
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        top: 0;
+        width: 200px;
+        height: 100px;
+        padding: 10px;
+        margin: auto;
+        border-radius: 5px;
+        background-color: rgba(170,255,174,.59);
+      }
+      #zakmeb {
+        background-color: rgba(170,255,174,.59);
+      }
+      .zakaz {
+        background-color: #ff7b00;
+        border: none;
+        padding: 6px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+      }
+      #retzak {
+        font-weight: bold;
+      }
+      #push {
+          font-size: 40px;
+          background-color: rgb(0, 164, 240, .59);
+          display: none;
+      }
+      .non {
+        display: none;
+      }
+      .imgonv {
+          display: none;
+          width: 20px;
+      }
     </style>
     <script>
-        $(document).ready(function(){
-          if(document.location.search == "?clip"){
-            var set = setInterval(function(){
-          navigator.clipboard.readText().then(text => {
-            if(text != ""){
-              navigator.clipboard.writeText("");
-              $("#src0").attr("src", text);
+      $(document).ready(function() {
+          var h = $(document).height();
+          var pad = (h - 144) / 2;
+          $("#menu").css("padding-top", pad + "px");
+          window.addEventListener("resize", function() {
+    	        var h = $(document).height();
+          var pad = (h - 144) / 2;
+          $("#menu").css("padding-top", pad + "px");
+    }, false);
+          $.ajax({
+              type: "post",
+              url: "form.php",
+              dataType: "html",
+              data: ({t: "ac"}),
+              success: function(data) {
+                  $("#acn").text(data);
             }
-          });
-            }, 1000);
+        });
+        $.ajax({
+              type: "post",
+              url: "form.php",
+              dataType: "html",
+              data: ({t: "ready"}),
+              success: function(data) {
+                  data = data.substring(data.indexOf("<"), data.length);
+                $("body").append(data);
+                $(".blockmeb").show();
+        $("#clmenu").click(function() {
+          $(".non").hide();
+          $("#menu").show();
+        });
+        $("#kat").click(function() {
+          $(".blockmeb").show();
+          $("#menu").hide();
+        });
+        $("#kon").click(function() {
+          $("#kontakt").show();
+          $("#menu").hide();
+        });
+        $("#vr").click(function() {
+            var log = $("#acn").text();
+          if(log != "") {
+              $("#email").val(log);
+              $("#vhodbut").text("Выйти");
+          }
+          $("#vhreg").show();
+          $("#menu").hide();
+        });
+        $("#myk").click(function() {
+          $("#korz").show();
+          $("#menu").hide();
+          var log = $("#acn").text();
+          $.ajax({
+              type: "post",
+              url: "form.php",
+              dataType: "html",
+              data: ({t: "kor", log: log}),
+              success: function(data) {
+                 $("#korz").append(data);
+                 $(".blockkar button").hide();
+            }
+        });
+        });
+        $("#nam").click(function() {
+            var log = $("#acn").text();
+          $("#eemail").val(log);
+          $("#mesmeb").show();
+          $("#menu").hide();
+        });
+        $("#mesbut").click(function() {
+          var val1 = $("#nameemail").val();
+          var val2 = $("#textemail").val();
+          var val3 = $("#eemail").val();
+          var val4 = $("#temail").val();
+          if(val2 != "" && val1 != "") {
+            $.ajax({
+              type: "post",
+              url: "form.php",
+              dataType: "html",
+              data: ({t: "email", name: val1, text: val2, email: val3, tel: val4}),
+              beforeSend: function(){
+                  $("#imgonm").show();
+              },
+              success: function(data) {
+                  $("#imgonm").hide();
+                    $("#mesmeb").hide();
+                    $("#push").show();
+                    $("#push").text("Сообщение успешно отправлено.");
+                    setTimeout(function () {
+                        $("#push").hide();
+                        $("#mesmeb").show();
+                    }, 3000);
+              }
+            });
           }
         });
+        $("#retzak").click(function() {
+          $("#zakmeb").hide();
+          $(".blockmeb").show();
+        });
+        $(".zakaz").click(function() {
+          $("#zakmeb").show();
+          $(".blockmeb").hide();
+          var log = $("#acn").text();
+          $("#ezak").val(log);
+          var idb = $(".blockmeb:hover").attr("id");
+          var nz = $("#" + idb + " .namemeb").html();
+          $("#typezak").html(nz);
+        });
+        $("#zakbut").click(function() {
+            var log = $("#acn").text();
+          var val1 = $("#namezak").val();
+          var val2 = "<b>Новый заказ</b><br/>" + $("#typezak").html();
+          var val3 = $("#ezak").val();
+          var val4 = $("#tzak").val();
+          if(val1 != "" && (val3 != "" || val4 != "")) {
+            $.ajax({
+              type: "post",
+              url: "form.php",
+              dataType: "html",
+              data: ({t: "zak", name: val1, text: val2, email: val3, tel: val4, log: log}),
+              beforeSend: function(){
+                  $("#imgonz").show();
+              },
+              success: function(data) {
+                  $("#imgonz").hide();
+                    $("#zakmeb").hide();
+                    $("#push").show();
+                    $("#push").text("Заказ принят.");
+                    setTimeout(function () {
+                        $("#push").hide();
+                        $(".blockmeb").show();
+                    }, 3000);
+              }
+            });
+          }
+        });
+        $(".img").click(function() {
+            var s = $(".img:hover").attr("src");
+            var a = document.createElement("a");
+            a.href = s;
+            a.click();
+        });
+        $("#chreg").click(function() {
+          if($(this).text() == "Регистрация") {
+            $("#vidreg").text("РЕГИСТРАЦИЯ");
+            $(this).text("Вход");
+            $("#vhodbut").text("Зарегистрироваться");
+          } else if($(this).text() == "Вход") {
+            $("#vidreg").text("ВХОД");
+            $(this).text("Регистрация");
+            $("#vhodbut").text("Войти");
+          }
+        });
+        $("#vhodbut").click(function() {
+          if($(this).text() == "Зарегистрироваться") {
+            var log = $("#email").val();
+            var par = $("#parol").val();
+            if(log != "" && par != "") {
+              $("#erlog").text("");
+              $("#erpas").text("");
+              if(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(log) == false) {
+                $("#erlog").text("Неправильно введен e-mail");
+              } else if(/\D\W/g.test(par) == true || par.length < 8){
+                $("#erpas").text("Для пороля можно использовать только цифры и латинские буквы, не менее 8 цифр в пароле");
+              } else {
+                  var ren = Math.floor(Math.random() * 1000000);
+                $.ajax({
+              type: "post",
+              url: "form.php",
+              dataType: "html",
+              data: ({t: "pre", email: log, kod: ren}),
+              beforeSend: function(){
+                  $("#imgon").show();
+              },
+              success: function(data) {
+                  $("#imgon").hide();
+                $("#cod").show();
+                $("#vhreg").hide();
+                $("#dalee").click(function() {
+                  var kod = $("#numkod").val();
+                  if(kod == ren){
+                      $.ajax({
+              type: "post",
+              url: "form.php",
+              dataType: "html",
+              data: ({t: "reg", email: log, pas: par}),
+              success: function(data) {
+                  $("#cod").hide();
+                  $("#push").show();
+                    $("#push").text("Вы успешно зарегистрированы.");
+                    setTimeout(function () {
+                        $("#push").hide();
+                        $("#acn").text(log);
+                        $("#korz").show();
+                    }, 3000);
+                  }
+                });
+            }
+            });
+            }
+              });
+              }
+            } else {
+              $("#erlog").text("Введите e-mail");
+            }
+          } else if($(this).text() == "Войти") {
+            var log = $("#email").val();
+            var par = $("#parol").val();
+            if(log != "" && par != "") {
+              $("#erlog").text("");
+              $("#erpas").text("");
+              if(/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(log) == false) {
+                $("#erlog").text("Неправильно введен e-mail");
+              } else if(/\D\W/g.test(par) == true || par.length < 8){
+                $("#erpas").text("Для пороля можно использовать только цифры и латинские буквы, не менее 8 цифр в пароле");
+              } else {
+                  var ren = Math.floor(Math.random() * 1000000);
+                $.ajax({
+              type: "post",
+              url: "form.php",
+              dataType: "html",
+              data: ({t: "vhod", log: log, par: par, kod: ren}),
+              beforeSend: function(){
+                  $("#imgon").show();
+              },
+              success: function(data) {
+                  $("#imgon").hide();
+                  if(data == ""){
+                      $("#erlog").text("Такого пользователя не существует");
+                  } else if(data == "np"){
+                      $("#erpas").text("Введен неверный пароль");
+                  } else if(data == "ni"){
+                      $("#cod").show();
+                $("#vhreg").hide();
+                $("#dalee").click(function() {
+                  var kod = $("#numkod").val();
+                  if(kod == ren){
+                      $("#cod").hide();
+                        $("#acn").text(log);
+                        $("#korz").show();
+            }
+            });
+                  } else if(data == "good"){
+                      $("#vhreg").hide();
+                      $("#acn").text(log);
+                        $("#korz").show();
+                  }
+            }
+              });
+              }
+            } else {
+              $("#erlog").text("Введите e-mail");
+            }
+          } else if($(this).text() == "Выйти") {
+              $("#acn").text("");
+              $("#email").val("");
+              $("#parol").val("");
+              $("#vhodbut").text("Войти");
+              $.ajax({
+              type: "post",
+              url: "form.php",
+              dataType: "html",
+              data: ({t: "out"})
+              });
+            }
+        });
+        }
+        });
+      });
     </script>
   </head>
   <body>
-
-<iframe scrolling="no" src="https://neon.today/context/get/64576/19284/1/468/60" style="width: 468px; height: 60px;  padding: 0;border: 1px dotted grey;" frameborder="0"></iframe>
-<br/>
-    <iframe id="src0" src="game.html"></iframe>
+      <div id="futer">
+      <span id="name">МЕБЕЛЬ</span>
+      </div>
+      <img id="clmenu" src="menu.jpg" width="50px" />
+    <div id="kontakt" class="non">
+      <span class="info">Контактное лицо: </span><br/>
+      <span class="info">Телефон: </span><br/>
+      <span class="info">E-mail: </span><br/>
+      <span class="info">Адрес: </span><br/>
+    </div>
+    <div id="menu">
+      <span id="kat">КАТАЛОГ</span><br/><br/>
+      <span id="nam">НАПИШИТЕ НАМ</span><br/><br/>
+      <span id="vr">ВХОД</span><br/><br/>
+      <span id="myk">МОЯ КОРЗИНА</span><br/><br/>
+      <span id="kon">КОНТАКТЫ</span>
+    </div>
+    <div id="mesmeb" class="non">
+      Ваше имя <input id="nameemail" type="text"/><br/>
+      Сообщение<br/>
+      <textarea id="textemail"></textarea><br/>
+      Ваш телефон <input id="temail" type="tel"/><br/>
+      Ваш e-mail <input id="eemail" type="email"/><br/>
+      <button id="mesbut">
+        Отправить
+      </button><img src="onimg.gif" class="imgonv" id="imgonm"/>
+    </div>
+    <div id="cod" class="non">
+      <span id="retreg">Назад</span><br/>
+      Введите код из письма <input type="tel" id="numkod" placeholder="Код"/><br/>
+      <button id="dalee">
+        Далее
+      </button>
+    </div>
+    <div id="vhreg" class="non">
+      <b id="vidreg">ВХОД</b><br/>
+      E-mail <input id="email" placeholder="Введите ваш e-mail" type="email"/><br/>
+      <span id="erlog"></span><br/>
+      Пароль <input id="parol" placeholder="Введите пароль" type="text"/><br/>
+      <span id="erpas"></span><br/>
+      <button id="vhodbut">Войти</button><img src="onimg.gif" class="imgonv" id="imgon"/>
+      <span id="chreg">Регистрация</span>
+    </div>
+    <div id="zakmeb" class="non">
+      <span id="retzak"><<<Назад</span><br/>
+      Ваше имя <input id="namezak" type="text"/><br/>
+      Ваш телефон <input id="tzak" type="tel"/><br/>
+      Ваш e-mail <input id="ezak" type="email"/><br/>
+      <span style="font-weight: bold;">Заказ</span><br/>
+      <span id="typezak"></span><br/>
+      <button id="zakbut">
+        Заказать
+      </button><img src="onimg.gif" class="imgonv" id="imgonz"/>
+    </div>
+      <div id="korz" class="non"><span id="acn"></span><h3>МОЯ КОРЗИНА</h3></div>
+    <div id="push">ikkplo</div>
   </body>
 </html>
