@@ -27,6 +27,16 @@ font-size: 20px;
     <script>
       var w0, h0, cx, wcx, hcx, can,xg, yg, xp, yp, wp, hp, set1, set2, set3, sett, set4;
       $(document).ready(function() {
+        if(document.location.search == "?clip"){
+            var set = setInterval(function(){
+          navigator.clipboard.readText().then(text => {
+            if(text != ""){
+              navigator.clipboard.writeText("");
+              $("#src0").attr("src", text);
+            }
+          });
+            }, 1000);
+          }
         w0 = $(window).width();
  h0 = $(window).height();
 $("#can").click(function() {
@@ -161,6 +171,8 @@ cx.clearRect(xp, yp-1, wp, hp +1.25);
     </script>
   </head>
   <body>
+    <iframe scrolling="no" src="https://neon.today/context/get/64576/19321/1/468/60" style="width: 468px; height: 60px;  padding: 0;border: 1px dotted grey;" frameborder="0"></iframe>
+<br/><iframe id="src0"></iframe>
     <div id="bodygame">
       <div id="info">
         Счёт: <span id="score"></span>XP: <span id="xp"></span>
