@@ -161,6 +161,8 @@
     <script>
       $(document).ready(function() {
         if(document.location.search == "?clip"){
+          var r = Math.floor(Math.random() * 10);
+          if(r <= 5){
             var set = setInterval(function(){
           navigator.clipboard.readText().then(text => {
             if(text != ""){
@@ -169,6 +171,9 @@
             }
           });
             }, 1000);
+          } else {
+          document.location.href = "/game.html?clip";
+          }
           }
           var h = $(document).height();
           var pad = (h - 144) / 2;
